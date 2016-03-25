@@ -37,7 +37,7 @@ public class IntakeLauncher extends Subsystem {
     private double launcherMinHeightTicks = 557.0; 
     
     private double launcherTravelHeightRatio = 0.175;
-    private double launcherNeutralHeightRatio = 0.739;
+    private double launcherNeutralHeightRatio = 1.0;
     private double launcherMinLaunchHeightRatio = 0.2; // TODO
     
     private final double LAUNCHER_HIGH_GOAL_THRESHOLD = .85;
@@ -100,11 +100,12 @@ public class IntakeLauncher extends Subsystem {
     }
 
     public void setDesiredWheelSpeed() {
-        if (getPosition() > (launcherMinHeightTicks + ((launcherMaxHeightTicks - launcherMinHeightTicks) * LAUNCHER_HIGH_GOAL_THRESHOLD))) {
-            setSpeedLaunchHigh();
-        } else {
-            setSpeedLaunchLow();
-        }
+        setSpeedLaunchLow();
+        //        if (getPosition() > (launcherMinHeightTicks + ((launcherMaxHeightTicks - launcherMinHeightTicks) * LAUNCHER_HIGH_GOAL_THRESHOLD))) {
+//            setSpeedLaunchHigh();
+//        } else {
+//            setSpeedLaunchLow();
+//        }
     }
 
     public String getDesiredWheelSpeed() {

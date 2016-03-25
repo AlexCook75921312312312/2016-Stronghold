@@ -1,10 +1,5 @@
 package org.usfirst.frc.team4915.stronghold.subsystems;
 
-import org.usfirst.frc.team4915.stronghold.Robot;
-import org.usfirst.frc.team4915.stronghold.RobotMap;
-import org.usfirst.frc.team4915.stronghold.commands.IntakeLauncher.Aimer.AimLauncherCommand;
-import org.usfirst.frc.team4915.stronghold.vision.robot.VisionState;
-
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -12,6 +7,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team4915.stronghold.Robot;
+import org.usfirst.frc.team4915.stronghold.RobotMap;
+import org.usfirst.frc.team4915.stronghold.commands.IntakeLauncher.Aimer.AimLauncherCommand;
+import org.usfirst.frc.team4915.stronghold.vision.robot.VisionState;
 
 public class IntakeLauncher extends Subsystem {
 
@@ -146,10 +145,7 @@ public class IntakeLauncher extends Subsystem {
 
     public boolean elevationTargetReached(double targetDegrees) {
         double currentElevation = getElevationDegrees();
-        if (Math.abs(this.visionTarget - currentElevation) < AIM_DEGREES_SLOP) 
-            return true;
-        else
-            return false;
+        return Math.abs(this.visionTarget - currentElevation) < AIM_DEGREES_SLOP; 
     }
 
     // changes the set point to a value
@@ -173,9 +169,9 @@ public class IntakeLauncher extends Subsystem {
     // sets the set point with vision and moves to set point
     public void trackVision() {
         VisionState vs = VisionState.getInstance();
-        if (vs == null)
+        if (vs == null) {
             return;
-
+        }
         if (!vs.LauncherLockedOnTarget) {
             double currentElevation = getElevationDegrees();
             if (this.visionTarget == NO_VISION_TARGET) {

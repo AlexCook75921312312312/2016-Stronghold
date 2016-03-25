@@ -146,7 +146,7 @@ public class IntakeLauncher extends Subsystem {
 
     public boolean elevationTargetReached(double targetDegrees) {
         double currentElevation = getElevationDegrees();
-        if (Math.abs(this.visionTarget - currentElevation) < AIM_DEGREES_SLOP)
+        if (Math.abs(this.visionTarget - currentElevation) < AIM_DEGREES_SLOP) 
             return true;
         else
             return false;
